@@ -4,7 +4,7 @@
 
 A production-ready Rust API starter kit built with Axum, featuring JWT authentication, file uploads, OpenAPI docs, and clean layered architecture.
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg?logo=paypal)](https://www.paypal.me/thomilive)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg?logo=paypal)](https://www.paypal.me/Nrapendratrivedi)
 
 ## Features
 

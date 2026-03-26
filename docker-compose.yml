@@ -1,3 +1,4 @@
+
 services:
   app:
     build:
@@ -7,30 +8,28 @@ services:
     ports:
       - "3099:3099"
     env_file:
-      - .env.local
+      - environment/.env.local
     environment:
       PORT: "3099"
     volumes:
       - app_data:/app/data
       - app_public:/app/public
     restart: unless-stopped
-
-  # If you need postgress db
-  # db:
-  #   image: postgres:16-alpine
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: postgres
-  #     POSTGRES_DB: axum_starter
-  #   ports:
-  #     - "5432:5432"
-  #   volumes:
-  #     - postgres_data:/var/lib/postgresql/data
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
-  #     interval: 5s
-  #     timeout: 5s
-  #     retries: 5
+  db:
+     image: postgres:16-alpine
+     environment:
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: postgres
+       POSTGRES_DB: axum_starter
+     ports:
+       - "5432:5432"
+     volumes:
+       - postgres_data:/var/lib/postgresql/data
+     healthcheck:
+       test: ["CMD-SHELL", "pg_isready -U postgres"]
+       interval: 5s
+       timeout: 5s
+       retries: 5
 
 volumes:
   app_data:

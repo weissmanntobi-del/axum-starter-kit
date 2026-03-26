@@ -130,17 +130,17 @@ case "$cmd" in
 
   # ------------------ App ------------------
   start)
-    load_env ".env.production"
+    load_env "environment/.env.production"
     bin_path="$(ensure_release_binary)"
     exec "$bin_path" "$@"
     ;;
   start:staging)
-    load_env ".env.staging"
+    load_env "environment/.env.staging"
     bin_path="$(ensure_release_binary)"
     exec "$bin_path" "$@"
     ;;
   release)
-    load_env ".env.production"
+    load_env "environment/.env.production"
     cargo run --release -- "$@"
     ;;
   release:staging)
@@ -148,30 +148,30 @@ case "$cmd" in
     cargo run --release -- "$@"
     ;;
   dev)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     cargo run
     ;;
   dev:watch)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     cargo watch -q -c -w src/ -x run
     ;;
   dev:staging)
-    load_env ".env.staging"
+    load_env "environment/.env.staging"
     cargo run -- -- "$@"
     ;;
   dev:production)
-    load_env ".env.production"
+    load_env "environment/.env.production"
     cargo run --release -- "$@"
     ;;
   build)
     cargo build --release "$@"
     ;;
   build:staging)
-    load_env ".env.staging"
+    load_env "environment/.env.staging"
     cargo build --release "$@"
     ;;
   build:production)
-    load_env ".env.production"
+    load_env "environment/.env.production"
     cargo build --release "$@"
     ;;
   bin:ensure)
@@ -185,27 +185,27 @@ case "$cmd" in
     diesel migration create "$@"
     ;;
   db:migration:run)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     ensure_command diesel
     diesel migration run "$@"
     ;;
   db:migration:revert)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     ensure_command diesel
     diesel migration revert "$@"
     ;;
   db:migration:reset)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     ensure_command diesel
     diesel migration redo "$@"
     ;;
   db:migration:status)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     ensure_command diesel
     diesel migration list "$@"
     ;;
   db:migration:schema)
-    load_env ".env.local"
+    load_env "environment/.env.local"
     ensure_command diesel
     mkdir -p src/schemas
     diesel print-schema >src/schemas/table.rs
