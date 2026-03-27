@@ -1,4 +1,4 @@
-## Rust Production Cheatsheet : https://tobiweissmann.gumroad.com/l/pvaqvy
+## Complete Rust Material : https://tobiweissmann.gumroad.com/l/gnuvxu
 # Axum Starter
 
 ![Axum Starter](screenshot.png)
