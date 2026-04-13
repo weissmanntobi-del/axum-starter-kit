@@ -8,7 +8,9 @@ pub async fn find_by_id(
   db: &DBSqlite,
   id: i32,
 ) -> Result<Attachment, HttpError> {
-  super::repository::find_by_id(db, id).await.map_err(HttpError::from)
+  super::repository::find_by_id(db, id)
+    .await
+    .map_err(HttpError::from)
 }
 
 pub async fn find_by_user(
@@ -79,5 +81,7 @@ pub async fn delete(
   id: i32,
   user_id: String,
 ) -> Result<Attachment, HttpError> {
-  super::repository::delete(db, id, user_id).await.map_err(HttpError::from)
+  super::repository::delete(db, id, user_id)
+    .await
+    .map_err(HttpError::from)
 }

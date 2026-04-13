@@ -13,7 +13,9 @@ pub async fn find_by_id(
   db: &DBSqlite,
   uid: String,
 ) -> Result<User, HttpError> {
-  repository::find_by_id(db, uid).await.map_err(HttpError::from)
+  repository::find_by_id(db, uid)
+    .await
+    .map_err(HttpError::from)
 }
 
 pub async fn find_by_email(
@@ -29,7 +31,9 @@ pub async fn create(
   db: &DBSqlite,
   new_user: NewUser,
 ) -> Result<User, HttpError> {
-  repository::insert(db, new_user).await.map_err(HttpError::from)
+  repository::insert(db, new_user)
+    .await
+    .map_err(HttpError::from)
 }
 
 pub async fn find_all(

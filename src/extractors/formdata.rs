@@ -182,14 +182,13 @@ where
   }
 
   let fields: T = serde_json::from_value(
-    serde_json::to_value(&text_fields)
-      .map_err(|e| HttpError::ERR040(e.to_string()))?,
+    serde_json::to_value(&text_fields).map_err(|e| HttpError::ERR040(e.to_string()))?,
   )
   .map_err(|e| HttpError::ERR400(e.to_string()))?;
 
-  fields.validate().map_err(|e: ValidationErrors| {
-    HttpError::ERR034(format_validation_errors(&e))
-  })?;
+  fields
+    .validate()
+    .map_err(|e: ValidationErrors| HttpError::ERR034(format_validation_errors(&e)))?;
 
   Ok(MultipartForm { fields, files })
 }
