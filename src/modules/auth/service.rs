@@ -39,7 +39,6 @@ pub async fn register(
 ) -> Result<(User, RefreshToken), HttpError> {
   if user_service::find_by_email(db, &user_email)
     .await?
-    // .map_err(HttpError::from)
     .is_some()
   {
     return Err(HttpError::ERR010);
@@ -58,7 +57,6 @@ pub async fn register(
   };
 
   let user = user_service::create(db, new_user).await?;
-  //.map_err(HttpError::from)?;
   let refresh = repository::insert(db, new_refresh_token_record(&user.id))
     .await
     .map_err(HttpError::from)?;
@@ -74,7 +72,6 @@ pub async fn login(
 ) -> Result<(User, RefreshToken), HttpError> {
   let user = user_service::find_by_email(db, &user_email)
     .await?
-    //.map_err(HttpError::from)?
     .ok_or(HttpError::ERR013)?;
 
   let valid = encrypt::verify(&password, &user.password).map_err(|_| HttpError::ERR013)?;
