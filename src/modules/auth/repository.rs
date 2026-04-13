@@ -14,7 +14,7 @@ pub async fn find_by_token(
       .select(RefreshToken::as_select())
       .first(conn)
       .optional()
-      .map_err(|e| anyhow!("DB_ERROR: {}", e))
+      .map_err(|e| anyhow!("DB_ERROR: {e}"))
   })
   .await
 }
@@ -29,13 +29,13 @@ pub async fn insert(
     diesel::insert_into(refresh_tokens::table)
       .values(&new_token)
       .execute(conn)
-      .map_err(|e| anyhow!("DB_ERROR_INSERT: {}", e))?;
+      .map_err(|e| anyhow!("DB_ERROR_INSERT: {e}"))?;
 
     refresh_tokens::table
       .filter(refresh_tokens::id.eq(&tid))
       .select(RefreshToken::as_select())
       .first(conn)
-      .map_err(|e| anyhow!("DB_ERROR_FETCH: {}", e))
+      .map_err(|e| anyhow!("DB_ERROR_FETCH: {e}"))
   })
   .await
 }
@@ -50,18 +50,18 @@ pub async fn rotate(
   db.transaction(move |conn| {
     diesel::delete(refresh_tokens::table.filter(refresh_tokens::id.eq(&old_id)))
       .execute(conn)
-      .map_err(|e| anyhow!("DB_ERROR_DELETE: {}", e))?;
+      .map_err(|e| anyhow!("DB_ERROR_DELETE: {e}"))?;
 
     diesel::insert_into(refresh_tokens::table)
       .values(&new_token)
       .execute(conn)
-      .map_err(|e| anyhow!("DB_ERROR_INSERT: {}", e))?;
+      .map_err(|e| anyhow!("DB_ERROR_INSERT: {e}"))?;
 
     refresh_tokens::table
       .filter(refresh_tokens::id.eq(&new_tid))
       .select(RefreshToken::as_select())
       .first(conn)
-      .map_err(|e| anyhow!("DB_ERROR_FETCH: {}", e))
+      .map_err(|e| anyhow!("DB_ERROR_FETCH: {e}"))
   })
   .await
 }

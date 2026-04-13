@@ -4,10 +4,10 @@ use std::path::Path;
 pub fn query_to_string(params: HashMap<String, String>) -> String {
   let query_string = params
     .iter()
-    .map(|(key, value)| format!("{}={}", key, value))
+    .map(|(key, value)| format!("{key}={value}"))
     .collect::<Vec<_>>()
     .join("&");
-  format!("?{}", query_string)
+  format!("?{query_string}")
 }
 
 pub fn slugify(input: &str) -> String {

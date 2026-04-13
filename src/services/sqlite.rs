@@ -176,7 +176,7 @@ impl DBSqlite {
         );
         Ok(())
       }
-      Err(e) => Err(anyhow::anyhow!("MIGRATION_EXECUTE_FAILURE: {}", e)),
+      Err(e) => Err(anyhow::anyhow!("MIGRATION_EXECUTE_FAILURE: {e}")),
     }
   }
 

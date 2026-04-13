@@ -13,7 +13,7 @@ pub async fn find_all(
       users::table
         .count()
         .first::<i64>(conn)
-        .map_err(|e| anyhow!("DB_ERROR: {}", e))
+        .map_err(|e| anyhow!("DB_ERROR: {e}"))
     })
     .await?;
 
@@ -25,7 +25,7 @@ pub async fn find_all(
         .limit(limit)
         .select(User::as_select())
         .load(conn)
-        .map_err(|e| anyhow!("DB_ERROR: {}", e))
+        .map_err(|e| anyhow!("DB_ERROR: {e}"))
     })
     .await?;
 
@@ -44,7 +44,7 @@ pub async fn find_by_id(
         .select(User::as_select())
         .first(conn)
         .optional()
-        .map_err(|e| anyhow!("DB_ERROR: {}", e))
+        .map_err(|e| anyhow!("DB_ERROR: {e}"))
     })
     .await?;
 
@@ -63,7 +63,7 @@ pub async fn find_by_email(
       .select(User::as_select())
       .first(conn)
       .optional()
-      .map_err(|e| anyhow!("DB_ERROR: {}", e))
+      .map_err(|e| anyhow!("DB_ERROR: {e}"))
   })
   .await
 }
@@ -84,14 +84,14 @@ pub async fn insert(
           diesel::result::DatabaseErrorKind::UniqueViolation,
           _,
         ) => anyhow!("UNIQUE_VIOLATION"),
-        other => anyhow!("DB error: {}", other),
+        other => anyhow!("DB error: {other}"),
       })?;
 
     users::table
       .filter(users::id.eq(&uid))
       .select(User::as_select())
       .first(conn)
-      .map_err(|e| anyhow!("DB_ERROR: {}", e))
+      .map_err(|e| anyhow!("DB_ERROR: {e}"))
   })
   .await
 }

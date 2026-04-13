@@ -34,14 +34,14 @@ pub fn time_id(len: usize) -> String {
   // Perform the same modulo operation as JS version
   let mixed_number = now % 60466176;
   // Convert to base 36 string (equivalent to toString(36) in JS)
-  let id = format!("{:x}", mixed_number);
+  let id = format!("{mixed_number:x}");
   // Pad with 'a' characters if needed
   let padding = if len > id.len() {
     "a".repeat(len - id.len())
   } else {
     String::new()
   };
-  format!("{}{}", padding, id)
+  format!("{padding}{id}" )
 }
 
 pub struct Random {
@@ -99,7 +99,7 @@ mod tests {
 
     for _ in 0..num_ids {
       let id = id();
-      assert!(ids.insert(id), "Duplicate ID generated: {}", id);
+      assert!(ids.insert(id), "Duplicate ID generated: {id}");
     }
     assert_eq!(ids.len(), num_ids, "Not all IDs were unique");
   }

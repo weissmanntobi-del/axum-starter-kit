@@ -32,7 +32,7 @@ impl std::str::FromStr for AppEnv {
       "local" => Ok(AppEnv::Local),
       "staging" | "stag" => Ok(AppEnv::Staging),
       "production" | "prod" => Ok(AppEnv::Production),
-      _ => Err(format!("INVALID_ENVIRONMENT {}", s)),
+      _ => Err(format!("INVALID_ENVIRONMENT {s}")),
     }
   }
 }

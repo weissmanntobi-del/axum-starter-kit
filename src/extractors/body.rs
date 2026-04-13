@@ -65,7 +65,7 @@ mod tests {
   }
 
   async fn test_handler(BodyJson(payload): BodyJson<TestPayload>) -> StatusCode {
-    println!("Received valid payload: {:?}", payload);
+    println!("Received valid payload: {payload:?}");
     StatusCode::OK
   }
 

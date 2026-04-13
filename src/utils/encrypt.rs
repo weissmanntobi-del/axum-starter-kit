@@ -21,9 +21,9 @@ impl fmt::Display for PasswordError {
     match self {
       PasswordError::HashingInvalid => write!(f, "PASSWORD_HASHING_INVALID"),
       PasswordError::HashingFailed => write!(f, "PASSWORD_HASHING_FAILED"),
-      PasswordError::HashingError(msg) => write!(f, "PASSWORD_HASHING_ERROR: {}", msg),
+      PasswordError::HashingError(msg) => write!(f, "PASSWORD_HASHING_ERROR: {msg}"),
       PasswordError::VerificationError(msg) => {
-        write!(f, "PASSWORD_VERIFICATION_ERROR: {}", msg)
+        write!(f, "PASSWORD_VERIFICATION_ERROR: {msg}")
       }
     }
   }
