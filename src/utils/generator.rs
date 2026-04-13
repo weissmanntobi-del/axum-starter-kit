@@ -41,7 +41,7 @@ pub fn time_id(len: usize) -> String {
   } else {
     String::new()
   };
-  format!("{padding}{id}" )
+  format!("{padding}{id}")
 }
 
 pub struct Random {

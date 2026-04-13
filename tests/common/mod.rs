@@ -16,6 +16,7 @@ pub struct TestApp {
   _db_file: NamedTempFile,
 }
 
+#[allow(dead_code)]
 impl TestApp {
   /// Spin up a real server on a random port backed by a fresh SQLite temp file.
   pub async fn spawn() -> Self {
