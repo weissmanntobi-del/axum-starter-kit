@@ -49,7 +49,7 @@ async fn get_me_with_valid_token_returns_200() {
   let resp = app
     .client
     .get(format!("{}/users/me", app.address))
-    .header("Authorization", format!("Bearer {}", access_token))
+    .header("Authorization", format!("Bearer {access_token}"))
     .send()
     .await
     .expect("request failed");

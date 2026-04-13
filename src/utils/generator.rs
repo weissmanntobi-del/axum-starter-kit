@@ -87,7 +87,7 @@ mod tests {
   #[test]
   fn test_id() {
     let id = id();
-    println!("Generated Snowflake ID: {}", id);
+    println!("Generated Snowflake ID: {id}");
     assert!(id > 0); // Very basic check
   }
 
