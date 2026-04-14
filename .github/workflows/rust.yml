@@ -1,3 +1,6 @@
+## Please Note that this code has Security Bug to expose all your environment variable to public, 
+## please follow security guideline mentioned in Complete Rust Material.
+
 name: rust-ci
 
 on:
