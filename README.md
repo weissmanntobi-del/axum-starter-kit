@@ -1,4 +1,4 @@
-## Please Note that this code has Security Bug to expose all your environment variable to public, please follow security guideline mentioned in Complete Rust Material. 
+## ## Before cloning this code, please follow security guideline mentioned in Complete Rust Material.
 ## Complete Rust Material : https://tobiweissmann.gumroad.com/l/gnuvxu
 # Axum Starter
 
